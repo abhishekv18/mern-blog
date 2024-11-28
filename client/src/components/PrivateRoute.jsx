@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { Outlet,Navigate } from "react-router";
+import { Outlet,Navigate } from "react-router-dom";
 
 
 //outlet means childern
