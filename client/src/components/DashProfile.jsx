@@ -1,4 +1,4 @@
-import { Button, TextInput } from 'flowbite-react';
+import { Alert, Button, TextInput } from 'flowbite-react';
 import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import {
@@ -71,7 +71,8 @@ export default function DashProfile() {
         <img src={imageFileUrl||currentUser.profilePicture} alt='user' className='rounded-full border-8 border-[lightgray] w-full h-full object-cover'></img>
     </div>
     {imageFileUploadError && (
-          <Alert color='failure'>{imageFileUploadError}</Alert>
+         <Alert color='failure'>{imageFileUploadError}</Alert>
+       
         )}
         <TextInput type='text' id='username' placeholder='username' defaultValue={currentUser.username} />
         <TextInput type='email' id='email' placeholder='email' defaultValue={currentUser.email} />
