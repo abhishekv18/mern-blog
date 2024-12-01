@@ -12,6 +12,7 @@ import {
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
   import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { Link } from 'react-router-dom';
 export default function DashProfile() {
     const dispatch=useDispatch();
     const { currentUser, error, loading } = useSelector((state) => state.user);
@@ -163,9 +164,26 @@ setUpdateUserError(data.message);
         <TextInput type='text' id='username' placeholder='username' defaultValue={currentUser.username}  onChange={handleChange}/>
         <TextInput type='email' id='email' placeholder='email' defaultValue={currentUser.email}  onChange={handleChange}/>
         <TextInput type='password' id='password' placeholder='password'  onChange={handleChange} />
-        <Button type='submit' gradientDuoTone='purpleToBlue' outline>
-            update
+        <Button type='submit' gradientDuoTone='purpleToBlue' outline disabled={loading||imageFileUploading}>
+           {loading?'Loading...':' update'}
         </Button>
+        {currentUser.isAdmin && (
+         
+         <Link to={'/create-post'}>
+              <Button
+            
+            type='button'
+            gradientDuoTone='purpleToPink'
+            className='w-full'
+          >
+          
+            Create a post
+          </Button>  
+         </Link>
+          
+          
+        )}
+        
     </form>
     <div className='text-red-500 flex justify-between mt-5'>
         <span className='cursor-pointer' onClick={()=>setShowModal(true)}>Delete Account</span>
