@@ -31,7 +31,7 @@ export default function Comment({comment,onLike}) {
                     <div className='flex items-center mb-1'>
                         <span className='font-bold mr-1 text-xs truncate '>{user? `@${user.username}`:'anonymous user'} </span>
                         <span className='text-gray-500 text-xs'>
-                     {   moment(comment.createdAt).fromNow()}
+                     {   moment(comment.createdAt).fromNow()    }
                         </span>
                     </div>
                     <p  className='text-gray-500 pb-2'>{comment.content}</p>
