@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import React from 'react'
 import { signoutSuccess } from '../redux/user/userSlice';
-import { HiArrowSmRight, HiDocumentText, HiOutlineChat, HiOutlineUserGroup, HiUser } from "react-icons/hi";
+import { HiArrowSmRight, HiDocumentText, HiOutlineChartPie, HiOutlineChat, HiOutlineUserGroup, HiUser } from "react-icons/hi";
 export default function DashSidebar() {
   const dispatch=useDispatch();
   const { currentUser } = useSelector((state) => state.user);
@@ -45,6 +45,18 @@ export default function DashSidebar() {
          </Link>
          {
           currentUser.isAdmin && (
+            <Link to='/dashboard?tab=comp'>
+            <Sidebar.Item
+              as='div' icon={HiOutlineChartPie} active={tab==='comp'}
+              >
+             Dashboard
+            </Sidebar.Item>
+            </Link>
+          )
+         }
+
+         {
+          currentUser.isAdmin && (
             <Link to='/dashboard?tab=posts'>
             <Sidebar.Item
               as='div' icon={HiDocumentText} active={tab==='posts'}
@@ -77,7 +89,7 @@ export default function DashSidebar() {
             </Link>
           )
          }
-
+        
 
           <Sidebar.Item  icon={HiArrowSmRight} className='cursor-pointer' onClick={handleSignout}>
             Sign Out
