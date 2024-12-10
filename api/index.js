@@ -19,9 +19,10 @@ const __dirname = path.resolve();
 
 
 const app=express();
+const port = process.env.PORT || 4000;
 app.use(express.json());
 app.use(cookieParser());
-app.listen(3000,()=>{
+app.listen(port,()=>{
     console.log('server is at 3000!');
 });
 
