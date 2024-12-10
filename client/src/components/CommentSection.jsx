@@ -10,6 +10,7 @@ export default function CommentSection({postId}) {
            const [comment,setComment]=useState('');
            const [commentError, setCommentError] = useState(null);
            const [comments, setComments] = useState([]);
+           const [commentToDelete, setCommentToDelete] = useState(null);
            console.log(comments);
            const handleSubmit = async (e) => {
             e.preventDefault();
@@ -80,7 +81,24 @@ export default function CommentSection({postId}) {
             console.log(error.message);
           }
         };
-      
+        const handleDelete = async (commentId) => {
+         
+          try {
+            if (!currentUser) {
+              navigate('/sign-in');
+              return;
+            }
+            const res = await fetch(`/api/comment/deleteComment/${commentId}`, {
+              method: 'DELETE',
+            });
+            if (res.ok) {
+              const data = await res.json();
+              setComments(comments.filter((comment) => comment._id !== commentId));
+            }
+          } catch (error) {
+            console.log(error.message);
+          }
+        };
    return (
     <div className='max-w-2xl mx-auto w-full p-3'>
       {currentUser ? (
@@ -139,7 +157,10 @@ export default function CommentSection({postId}) {
     </div>
    {
     comments.map((comment)=>(
-      <Comment key={comment._id} comment={comment} onLike={handleLike} />
+      <Comment key={comment._id} comment={comment} onLike={handleLike}   onDelete={handleDelete
+      
+        
+      } />
     ))
    }
     </>
